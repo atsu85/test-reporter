@@ -71,5 +71,15 @@ describe('parseStackTraceLine tests', () => {
         lineStr: '18'
       })
     })
+    it('Kotlin with whitespaces, classloader, inner class, method with whitespaces', async () => {
+      const line = '   \tat app//net.easypark.skeleton.util.MdcUtilTest$InitLogMsgId.failing test(MdcUtilTest.kt:18)'
+      expect(parseStackTraceElement(line)).toEqual({
+        classLoader: 'app',
+        moduleNameAndVersion: undefined,
+        tracePath: 'net.easypark.skeleton.util.MdcUtilTest$InitLogMsgId.failing test',
+        fileName: 'MdcUtilTest.kt',
+        lineStr: '18'
+      })
+    })
   })
 })
